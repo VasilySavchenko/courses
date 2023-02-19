@@ -11,7 +11,7 @@ const webpack = require('webpack');
 
 const PRODUCTION_PLUGINS = [
     new HtmlWebpackPlugin({
-        title: "FastWallet",
+        title: "Puss",
         template: "./public/index.html",
         favicon: "./src/app/static/images/favicon.svg",
     }),
@@ -41,7 +41,7 @@ const PRODUCTION_PLUGINS = [
 
 const DEVELOPMENT_PLUGINS = [
     new HtmlWebpackPlugin({
-        title: "FastWallet",
+        title: "Puss",
         template: "./public/index.html",
         // favicon: "./src/app/static/images/favicon.svg",
     }),
