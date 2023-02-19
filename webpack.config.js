@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
 const zlib = require("zlib");
 const CompressionPlugin = require("compression-webpack-plugin");
-const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
 const PRODUCTION_PLUGINS = [
@@ -33,7 +32,6 @@ const PRODUCTION_PLUGINS = [
         minRatio: 0.8,
         deleteOriginalAssets: false,
     }),
-    new Dotenv({ path: "./.env" }),
     new webpack.ProvidePlugin({
         Buffer: [ 'buffer', 'Buffer' ],
     }),
@@ -45,7 +43,6 @@ const DEVELOPMENT_PLUGINS = [
         template: "./public/index.html",
         // favicon: "./src/app/static/images/favicon.svg",
     }),
-    new Dotenv({ path: "./local.env" }),
     new webpack.ProvidePlugin({
         Buffer: [ 'buffer', 'Buffer' ],
     }),
@@ -98,7 +95,7 @@ module.exports = (env, argv) => {
         // devtool: "source-map",
         plugins: isProduction ? PRODUCTION_PLUGINS : DEVELOPMENT_PLUGINS,
         devServer: {
-            port: 3003,
+            port: 3000,
             open: true,
             historyApiFallback: true,
             allowedHosts: "all"
@@ -108,7 +105,6 @@ module.exports = (env, argv) => {
                 buffer: require.resolve('buffer'),
                 assert: require.resolve('assert'),
                 stream: require.resolve('stream-browserify'),
-                crypto: require.resolve('crypto-browserify'),
                 https: require.resolve('https-browserify'),
                 url: require.resolve('url'),
                 http: require.resolve('stream-http')
