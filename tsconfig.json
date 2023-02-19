@@ -1,0 +1,60 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "dist",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ],
+            "@components/*": [
+                "src/app/components/*"
+            ],
+            "@views/*": [
+                "src/app/views/*"
+            ],
+            "@store/*": [
+                "src/app/store/*"
+            ],
+            "@static/*": [
+                "src/app/static/*"
+            ],
+            "@utils/*": [
+                "src/app/utils/*"
+            ],
+        },
+        "target": "es6",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext",
+            "ScriptHost"
+        ],
+        "importHelpers": true,
+        "sourceMap": true,
+        "allowJs": false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": false,
+        "jsx": "react-jsx",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+    },
+    "include": [
+        "src",
+        "src/**/*",
+        "src/app",
+        "src/api"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist/**/*"
+    ]
+}
