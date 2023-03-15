@@ -1,6 +1,9 @@
 import React from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
-import Registration from '../views/Registration';
+
+import MainPage from '@/app/views/MainPage';
+import AllCourses from '@/app/components/Сourses/AllCourses';
+import SelectedCourse from '@/app/components/Сourses/SelectedCourse';
 
 /**
  * ComponentRoutes holds all needed information to fill up routes config.
@@ -28,13 +31,25 @@ export class ComponentRoutes implements RouteObject {
 
 /** Route config implementation */
 export class RouteConfig {
-    public static Registration: ComponentRoutes = new ComponentRoutes(
+    public static MainPage: ComponentRoutes = new ComponentRoutes(
         '/',
-        <Registration/>
+        <MainPage/>
+    );
+
+    public static AllCourses: ComponentRoutes = new ComponentRoutes(
+        'all-courses',
+        <AllCourses/>
+    );
+
+    public static SelectedCourse: ComponentRoutes = new ComponentRoutes(
+        'course',
+        <SelectedCourse/>
     );
 
     public static routes: ComponentRoutes[] = [
-        RouteConfig.Registration,
+        RouteConfig.MainPage.addChildren([
+            RouteConfig.AllCourses,
+        ]),
     ];
 }
 

@@ -50,10 +50,10 @@ const INTERNAL_ERROR = 500;
 export class APIClient {
     protected readonly http: HttpClient = new HttpClient();
 
-    // /** method to get the authorization token*/
-    // public get authToken() {
-    //     return JSON.parse(getLocalStorageItem(AUTH_TOKEN) || '');
-    // }
+    /** method to get the authorization token*/
+    public get authToken() {
+        return window.localStorage.getItem('AUTH_TOKEN') || '';
+    }
 
     /**
      * handles error due to response code.

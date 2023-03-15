@@ -160,6 +160,14 @@ module.exports = (env, argv) => {
                     },
                 },
                 {
+                    test: /\.(mp4|webm|ogg)$/i,
+                    exclude: /(node_modules)/,
+                    type: "asset/resource",
+                    generator: {
+                        filename: "videos/[name][hash:5][ext]",
+                    },
+                },
+                {
                     test: /\.(jpe|jpg|png|svg)(\?.*$|$)/,
                     exclude: /(node_modules)/,
                     type: "asset/resource",
