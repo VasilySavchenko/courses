@@ -41,7 +41,6 @@ const DEVELOPMENT_PLUGINS = [
     new HtmlWebpackPlugin({
         title: "Puss",
         template: "./public/index.html",
-        // favicon: "./src/app/static/images/favicon.svg",
     }),
     new webpack.ProvidePlugin({
         Buffer: [ 'buffer', 'Buffer' ],
@@ -78,8 +77,7 @@ module.exports = (env, argv) => {
     const isProduction = argv.mode === "production";
 
     return {
-        mode:  isProduction ? "production": "development",
-        watch: isProduction ? false : true,
+        mode: "production",
         performance: {
             hints: false,
             maxEntrypointSize: 512000,
@@ -92,17 +90,16 @@ module.exports = (env, argv) => {
             filename: "[name].[hash].js",
             publicPath: "/",
         },
-        // devtool: "source-map",
         plugins: isProduction ? PRODUCTION_PLUGINS : DEVELOPMENT_PLUGINS,
         devServer: {
-            port: 3000,
+            port: 3003,
             open: true,
             historyApiFallback: true,
             allowedHosts: "all"
         },
         resolve: {
             fallback: {
-                buffer: require.resolve('buffer'),
+                buffer: require.resolve('buffer/'),
                 assert: require.resolve('assert'),
                 stream: require.resolve('stream-browserify'),
                 https: require.resolve('https-browserify'),
@@ -113,23 +110,28 @@ module.exports = (env, argv) => {
                 "@components": path.resolve(__dirname, "./src/app/components/"),
                 "@views": path.resolve(__dirname, "./src/app/views/"),
                 "@static": path.resolve(__dirname, "./src/app/static/"),
-                "@utils": path.resolve(__dirname, "./src/app/utils/"),
                 "@app": path.resolve(__dirname, "./src/app/"),
                 "@": path.resolve(__dirname, "./src/"),
             },
             extensions: [".ts", ".tsx", ".js", ".jsx"],
-            modules: ["node_modules"],
+            modules: [path.resolve(__dirname, 'node_modules')],
         },
         module: {
             rules: [
                 {
                     test: /\.js$/,
+                    use: ["source-map-loader"],
+                    exclude: /node_modules\/(?!Hls)/,
+                },
+                {
+                    test: /\.js$/,
                     enforce: "pre",
                     use: ["source-map-loader"],
+                    exclude: /node_modules\/(?!Hls)/,
                 },
                 {
                     test: /\.m?(tsx|ts)$/i,
-                    exclude: /(node_modules)/,
+                    exclude: /node_modules\/(?!Hls)/,
                     use: [
                         {
                             loader: "ts-loader",

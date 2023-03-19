@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { getToken } from '@/app/store/auth/action';
-import { useAppDispatch } from '@/app/store';
+import './index.scss';
 
-const MainPage = () => {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(getToken());
-    }, []);
-
-    return <div>
-        <Outlet/>
-    </div>;
-};
+const MainPage = () => <div className="main-page">
+    <Outlet/>
+</div>;
 export default MainPage;

@@ -27,12 +27,9 @@
     &-container {
         display: flex;
         list-style: none;
-        justify-content: right;
+        justify-content: center;
         padding-top: 24px;
-
-        @media screen and (max-width: 630px) {
-            justify-content: space-between;
-        }
+        padding-bottom: 24px;
 
         & button:first-child svg {
             transform: rotate(180deg);
@@ -46,10 +43,6 @@
         text-align: center;
         margin-left: 16px;
         margin-right: 16px;
-
-        @media screen and (max-width: 630px) {
-            width: 55%;
-        }
     }
 
     &__pages {

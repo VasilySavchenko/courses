@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import './index.scss';
 import { Pagination } from '@components/common/Pagination';
 import CourseComponent from '@components/Сourses/AllCourses/Course';
+import { getToken } from '@/app/store/auth/action';
 import appConfig from '@/app/configs/appConfig.json';
 import { getAllCourses } from '@/app/store/courses/action';
 import { useAppDispatch, useAppSelector } from '@/app/store';
@@ -35,14 +36,16 @@ const AllCourses = () => {
         setCurrentPageNumber(pageNumber);
     };
 
-    return <div>
-        {allCurses.map((course: Course) => <CourseComponent course={course}/>)}
+    return<div>
         <Pagination
             onChange={onPageChange}
             currentPage={currentPageNumber}
             itemsTotal={courses.length}
             itemsPerPage={appConfig.COUNT_PAGE_ITEM}
         />
+        <div className="courses">
+            {allCurses.map((course: Course) => <CourseComponent course={course}/>)}
+        </div>
     </div>;
 };
 export default AllCourses;

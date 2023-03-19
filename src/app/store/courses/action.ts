@@ -6,7 +6,7 @@ import { Course } from '@/entities/course';
 const client = new CoursesApi();
 
 export const getAllCourses = createAsyncThunk(
-    'courses/all-courses',
+    'lesson/lesson-by-id',
     async function(): Promise<Course[]> {
         return await client.getAllCurses();
     }

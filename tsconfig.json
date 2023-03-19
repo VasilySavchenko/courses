@@ -30,7 +30,6 @@
             "ScriptHost"
         ],
         "importHelpers": true,
-        "sourceMap": true,
         "allowJs": false,
         "skipLibCheck": true,
         "esModuleInterop": true,

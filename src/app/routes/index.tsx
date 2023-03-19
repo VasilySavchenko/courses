@@ -1,6 +1,7 @@
-import React from 'react';
-import { RouteObject, useRoutes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { RouteObject, useNavigate, useRoutes } from 'react-router-dom';
 
+import Auth from '@/app/components/Auth';
 import MainPage from '@/app/views/MainPage';
 import AllCourses from '@/app/components/Сourses/AllCourses';
 import SelectedCourse from '@/app/components/Сourses/SelectedCourse';
@@ -36,23 +37,39 @@ export class RouteConfig {
         <MainPage/>
     );
 
+    public static Auth: ComponentRoutes = new ComponentRoutes(
+        'auth',
+        <Auth/>
+    );
     public static AllCourses: ComponentRoutes = new ComponentRoutes(
         'all-courses',
         <AllCourses/>
     );
 
     public static SelectedCourse: ComponentRoutes = new ComponentRoutes(
-        'course',
+        '/all-courses/course',
         <SelectedCourse/>
     );
 
     public static routes: ComponentRoutes[] = [
         RouteConfig.MainPage.addChildren([
+            RouteConfig.Auth,
             RouteConfig.AllCourses,
+            RouteConfig.SelectedCourse,
         ]),
     ];
 }
 
-export const Routes = () =>
-    /** New feature of react-router v6.4.3, allows to implement routes tree according to config. */
-    useRoutes(RouteConfig.routes);
+export const Routes = () => {
+    const nav = useNavigate();
+    const token = window.localStorage.getItem('AUTH_TOKEN');
+
+    useEffect(() => {
+        if (!token) {
+            nav(`${RouteConfig.Auth.path}`);
+        }
+        else { nav(`${RouteConfig.AllCourses.path}`); }
+    }, [token]);
+
+    return useRoutes(RouteConfig.routes);
+};

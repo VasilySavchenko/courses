@@ -5,10 +5,12 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { handleErrorMiddleware } from './middleware';
 import authSlice from './auth/slice';
 import coursesSlice from './courses/slice';
+import lessonSlice from './lesson/slice';
 
 const appReducer = combineReducers({
     authSlice,
     coursesSlice,
+    lessonSlice,
 });
 
 export const store = configureStore({
